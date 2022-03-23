@@ -1,0 +1,5 @@
+    Indicado para: Caminhada, Corrida
+    Material: Mesh
+    Composição: Cabedal: Mesh com tiras sintéticas para suporte. Calcanhar acolchoado e fecho em cadarço; Entressola: EVA; Solado: Borracha
+    Garantia do Fabricante: Contra defeito de fabricação
+    Origem: Nacional

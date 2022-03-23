@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return inertia('welcome');
+Route::get("/detail/{id}", [ProductController::class, 'show']);
+
+Route::get('/', [ProductController::class, 'index']);
+
+
+Route::get('/login', [LoginController::class, 'create'])->name('login');
+
+Route::get('/signup', function () {
+  return inertia('SignView');
+});
+
+Route::get('/about', function () {
+  return inertia('About');
+});
+
+
+Route::middleware('auth')->group(function () {
+  Route::get('/admin', function () {
+    return Inertia::render('Admin');
+  });
+
+  Route::get('/finalizar', function () {
+    return inertia('FinalizarCompra');
+  });
 });

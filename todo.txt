@@ -1,0 +1,48 @@
+* HAPPY PATH
+  - show product
+  - select product
+  - add to cart
+  > if logged
+    - confirm payment
+  > if not logged
+    - login
+    - confirm payment
+
+* TODO
+  * GENERAL 
+    - implement links
+  
+  * ON HOME
+    - Show promotions
+    x Show selected products
+    x fix prev/next buttons
+    x Show prices
+  
+  * SEARCHVIEW
+    - do search
+    - filter results on Backend
+    - pagination
+
+  * LOGIN
+    - direct to login page
+    - authenticate on background
+
+  * ON BACKEND
+    x Add details to proucts
+    - filter descounts
+    - store cart
+    - authentication
+    - set images
+
+  * DETAILS
+    - load images
+    - set size options
+    - set price
+    - set disponible amounts
+    - Add to cart button
+  
+  - Confirm payment
+  - Login
+   
+  - Cache shopcart
+
