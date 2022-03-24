@@ -12,7 +12,12 @@
       <search-box />
     </div>
     <div class="cart">
-      <login class="login" @click="() => Inertia.Inertia.get('/login')" />
+      <div v-if="props.username">
+        <login class="login" @click="() => Inertia.Inertia.get('/logout')" :name="props.username" />
+      </div>
+      <div v-else>
+        <login class="login" @click="() => Inertia.Inertia.get('/login')" />
+      </div>
       <shop-cart class="shop-cart m-center" />
     </div>
     <div class="links-row">
@@ -27,9 +32,10 @@ import ShopCart from "./ShopCart.vue";
 import Login from "./Login.vue";
 import Inertia from "@inertiajs/inertia"
 
-defineProps({
+const props = defineProps({
   logo: String,
-  desc: String
+  desc: String,
+  username: String
 })
 </script>
 

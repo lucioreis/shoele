@@ -6,7 +6,7 @@ use Database\Seeders\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductDetail extends Model
+class ProductDetails extends Model
 {
   protected $table = 'products_details';
   use HasFactory;

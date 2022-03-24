@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Address;
 use App\Models\CreditCard;
 use Illuminate\Database\Seeder;
-use App\Models\Customer;
+use App\Models\User;
 
 class CustomersSeeder extends Seeder
 {
@@ -19,12 +19,10 @@ class CustomersSeeder extends Seeder
     //
 
     $customer =
-      Customer::factory()
+      User::factory()
       ->times(10)
       ->has(Address::factory()->count(rand(1, 4)))
       ->has(CreditCard::factory()->count(rand(1, 4)))
       ->create();
-
-    dd($customer);
   }
 }

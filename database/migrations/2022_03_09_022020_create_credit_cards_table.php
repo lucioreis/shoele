@@ -18,7 +18,7 @@ return new class extends Migration
       $table->string('number', 100)->unique();
       $table->string('code');
       $table->date('expire');
-      $table->foreignId(('customer_id'))->constrained();
+      $table->foreignId(('user_id'))->constrained();
       $table->boolean('main');
       $table->timestamps();
     });

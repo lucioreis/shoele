@@ -6,50 +6,51 @@
     <div class="progress-bar">
       <div class="filled" :style="`max-width: ${33 * (current_index + 1)}%`"></div>
     </div>
-    <form action="/">
+    <form @submit.prevent="form.post('/signup')">
+      
       <div
         v-show="current_index === 0"
         :class="`step one ${(current_index === 0) ? 'active' : 'not-active'}`"
       >
         <label for="username">User name</label>
-        <input id="username" type="text" name="username" />
+        <input id="username" type="text" name="username" v-model="form.username"/>
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" />
+        <input id="email" type="email" name="email" v-model="form.email"/>
         <label for="password">Password</label>
-        <input id="password" type="password" name="password" />
+        <input id="password" type="password" name="password" v-model="form.password"/>
         <div class="buttons" style="display: flex; justify-content: flex-end">
           <button type="button" class="btn" @click.prevent="current_index++">Next</button>
         </div>
       </div>
-      <transition>
         <div
           v-show="current_index === 1"
           :class="`step two ${(current_index === 1) ? 'active' : 'not-active'}`"
         >
           <label for="Gender">Gender</label>
-          <input id="gender" type="text" name="gender" />
+          <input id="gender" type="text" name="gender" v-model="form.gender"/>
+          <label for="Cpf"> CPF </label>
+        <input id="cpf" type="number" name="Cpf" v-model="form.cpf" />
           <label for="phone">Phone</label>
-          <input id="Phone" type="text" name="phone" />
+          <input id="Phone" type="text" name="phone" v-model="form.phone"/>
           <label for="Cellphone">Cellphone</label>
-          <input id="cellphone" type="text" name="Cellphone" />
+          <input id="cellphone" type="text" name="Cellphone" v-model="form.cellphone"/>
           <div class="buttons">
             <button type="button" class="btn" @click.prevent="current_index--">Previous</button>
             <button type="button" class="btn" @click.prevent="current_index++">Next</button>
           </div>
         </div>
-      </transition>
       <div
         v-show="current_index === 2"
         :class="`step two ${(current_index === 2) ? 'active' : 'not-active'}`"
       >
         <label for="city">City</label>
-        <input id="city" type="text" name="city" />
+        <input id="city" type="text" name="city" v-model="form.city"/>
         <label for="state">State</label>
-        <input id="sate" type="text" name="state" />
+        <input id="sate" type="text" name="state" v-model="form.state"/>
         <label for="street">Street</label>
-        <input id="street" type="text" name="street" />
+        <input id="street" type="text" name="street" v-model="form.street"/>
         <label for="number">Number</label>
-        <input id="number" type="number" name="number" />
+        <input id="number" type="number" name="number" v-model="form.number"/>
         <div class="buttons">
           <button type="button" class="btn" @click.prevent="current_index--">Previous</button>
           <button id="submit" type="submit" class="btn">Sign Up</button>
@@ -61,6 +62,28 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useForm } from '@inertiajs/inertia-vue3';
+
+const form = useForm({
+  username: '',
+  email: '',
+  password: '',
+  gender: '',
+  cpf: 0,
+  phone: '',
+  cellphone: '',
+  city: '',
+  state: '',
+  street: '',
+  number: 0
+});
+
+function signup() {
+  form.post('/signup', {
+    preserveScroll: true,
+    onSuccess: () => console.log("Succes!!!")
+  });
+}
 
 let current_index = ref(0);
 

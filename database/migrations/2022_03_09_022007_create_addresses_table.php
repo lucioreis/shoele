@@ -22,7 +22,7 @@ return new class extends Migration
       $table->string('number', 50);
       $table->string('complement', 50);
       $table->text('observation');
-      $table->foreignId('customer_id')->constrained()->references('id')->on('customers');
+      $table->foreignId('user_id')->constrained()->references('id')->on('users');
       $table->boolean('main')->default(false);
 
       $table->timestamps();

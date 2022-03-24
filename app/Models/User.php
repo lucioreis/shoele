@@ -22,6 +22,11 @@ class User extends Authenticatable
     'name',
     'email',
     'password',
+    'gender',
+    'cpf',
+    'phone',
+    'cellphone',
+    'email_verified_at',
   ];
 
   /**
@@ -42,4 +47,29 @@ class User extends Authenticatable
   protected $casts = [
     'email_verified_at' => 'datetime',
   ];
+
+  public function setPasswordAttribute($value)
+  {
+    $this->attributes['password'] = bcrypt($value);
+  }
+
+  public function isAdmin()
+  {
+    return $this->admin;
+  }
+
+  public function addresses()
+  {
+    return $this->hasMany(Address::class);
+  }
+
+  public function creditCards()
+  {
+    return $this->hasMany(CreditCard::class);
+  }
+
+  public function orders()
+  {
+    return $this->hasMany(Order::class);
+  }
 }

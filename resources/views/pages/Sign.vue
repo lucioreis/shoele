@@ -2,11 +2,11 @@
   <div class="view">
     <div class="step">
       <h1>Log in</h1>
-      <form action="/login">
-        <label for="username">Username</label>
-        <input v-model="username" type="text" name="username" />
+      <form action="/">
+        <label for="username">E-mail</label>
+        <input v-model="form.email" type="text" name="username" />
         <label for="password">Password</label>
-        <input id="password" v-model="password" type="password" name="password" />
+        <input id="password" v-model="form.password" type="password" name="password" />
       </form>
 
       <div class="buttons">
@@ -19,25 +19,30 @@
 
 <script setup lang="ts">
 import { Inertia } from "@inertiajs/inertia";
-import { ref } from "vue";
+import { useForm } from "@inertiajs/inertia-vue3";
+import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user"
 
-let username = ref("");
-let password = ref("");
 
+const form = useForm({
+  email: '',
+  password: '',
+  remember: true
+});
+
+watch(form, (nform)=> {
+  console.log('form', nform);
+});
 let session = useUserStore();
 
 function login() {
-  session.setname(username.value);
-  session.setPassword(password.value);
 
-  console.log(session.getname);
-  console.log(session.getPassword)
-  if (username.value === "admin") {
-    Inertia.get('/admin');
-  } else {
-    Inertia.get('/');
-  }
+  form.post('/login', {
+    preserveScroll: true,
+    // onSuccess: () => {
+    //   form.reset('password');
+    // }
+  })
 
 }
 

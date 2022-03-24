@@ -12,6 +12,6 @@ class CreditCard extends Model
 
   public function customer()
   {
-    $this->belongsTo(Customer::class);
+    $this->belongsTo(User::class);
   }
 }
